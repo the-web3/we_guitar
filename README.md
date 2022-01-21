@@ -1,5 +1,15 @@
 ### 小型博客系统，效果图如下
 
+### PC 端效果
+.： 
+    ![.： 
+](https://github.com/guoshijiang/we_guitar/common/static/images/1.png)
+
+
+### 手机端效果
+.： 
+    ![.： 
+](https://github.com/guoshijiang/we_guitar/common/static/images/2.png)
 
 
 #### 1.项目介绍
