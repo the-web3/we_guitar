@@ -1,0 +1,85 @@
+{% extends 'web/layout/main.html' %}
+{% load staticfiles we_guitar_tag%}
+{% block head %}
+{% endblock %}
+{% block content %}
+<div class="left-content">
+    <img src="{% static 'images/big-logo-icon.png' %}" id="logo">
+    <img src="{% static 'images/jam-logo.png' %}" id="name">
+    <div class="all">
+        {% if cat_id == 0 %}
+            <p class="first current">
+                <a style="text-decoration:none" href="{% url 'index' %}?cat_id=0">
+                    <img src="{% static 'images/home-icon.png' %}">
+                    <span style="color:#fff">全部</span>
+                </a>
+            </p>
+        {% else %}
+            <p class="first">
+                <a style="text-decoration:none" href="{% url 'index' %}?cat_id=0">
+                    <img src="{% static 'images/home-icon.png' %}">
+                    <span style="color:#fff">全部</span>
+                </a>
+            </p>
+        {% endif %}
+        {% for cat in cat_list %}
+            {% if cat_id == cat.id %}
+                <p class="current">
+                    <a style="text-decoration:none" href="{% url 'index' %}?cat_id={{ cat.id }}">
+                        <img src="{% url 'index' %}media/{{ cat.icon }}">
+                        <span style="color:#fff">{{ cat.name }}</span>
+                    </a>
+                </p>
+            {% else %}
+                <p>
+                    <a style="text-decoration:none" href="{% url 'index' %}?cat_id={{ cat.id }}">
+                        <img src="{% url 'index' %}media/{{ cat.icon }}">
+                        <span style="color:#fff">{{ cat.name }}</span>
+                    </a>
+                </p>
+            {% endif %}
+        {% endfor %}
+        <p class="last">
+            About & Contact
+        </p>
+    </div>
+</div>
+<div class="right-content">
+    <div class="tupian">
+        <ul class="bd">
+            {% for banner in banner_list %}
+                <li>
+                    <img src="{% url 'index' %}media/{{ banner.img }}">
+                    <div class="roll">
+                        <p>{{ banner.title }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <ul class="hd">
+            <li class="on"></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        jQuery(".tupian").slide({titCell:".hd li",mainCell:".bd",effect:"left",autoPlay:true});
+    </script>
+    <ul class="article-list">
+        {% for acticle in article_lst %}
+        <li class="first">
+            <img src="{% url 'index' %}media/{{ acticle.img }}">
+            <div class="text">
+                <a href="{% url 'artcle' %}?aid={{ acticle.id }}" class="title">{{ acticle.title }}</a>
+                <p>{{ acticle.excerpt }}</p>
+                <div class="time-box">
+                    <img src="{% static 'images/time-icon.png' %}" alt="">
+                    <span>{{ acticle.created_at | hdatetime }}</span>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% include 'web/layout/pagination.html' with items=article_lst %}
+</div>
+{% endblock %}

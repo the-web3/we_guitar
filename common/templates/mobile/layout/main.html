@@ -1,0 +1,49 @@
+{% load staticfiles we_guitar_tag%}
+<html>
+<html data-static_url={{ config.STATIC_URL }}>
+  <head>
+    <title>we guitar</title>
+    <meta charSet="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Contro" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-title" content="we guitar">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="renderer" content="webkit" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favico.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src="{% static 'js/resize.js' %}"></script>
+    <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
+    <script src="{% static '/js/jquery.SuperSlide.2.1.1.js' %}"></script>
+    <meta name='robots' content='index,follow' />
+    <meta name="keywords" content="we guitar">
+    <meta name="description" content="we guitar">
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+      {% block content %}
+      {% endblock %}
+  </body>
+  <script>
+      function Sourch(obj) {
+          var title = $("#input_text").val();
+          var cat_id = {{ cat_id }};
+          request_url = "?cat_id=" + cat_id + "&title=" + title;
+          window.location = request_url;
+      }
+      var input_text = document.getElementById('input_text')
+      input_text.focus();
+      moveToEnd(input_text);
+      function moveToEnd(el) {
+        if (typeof el.selectionStart == "number") {
+            el.selectionStart = el.selectionEnd = el.value.length;
+        } else if (typeof el.createTextRange != "undefined") {
+            el.focus();
+            var range = el.createTextRange();
+            range.collapse(false);
+            range.select();
+        }
+      }
+  </script>
+</html>

@@ -1,0 +1,151 @@
+{% extends 'mobile/layout/main.html' %}
+{% load staticfiles we_guitar_tag%}
+{% block head %}
+{% endblock %}
+{% block content %}
+<div class="jamnews-container">
+    <div class="jamnews-title-container">
+      <img class="logo" src="{% static 'images/logo.png' %}" alt="">
+      <span></span>
+      <img class="logo-icon" src="{% static 'images/logo-icon.png' %}" alt="">
+      <p>JamNews</p>
+    </div>
+    <div class="jamnews-nav-container">
+      <div class="search-container">
+        <img src="{% static 'images/nav-icon.png' %}" alt="" class="nav-icon">
+        <div class="search-box">
+          {% if title == None %}
+            <input id="input_text" type="text"  placeholder="专为吉他手更新 更值得看的新闻">
+          {% else %}
+            <input id="input_text" autofocus="autofocus" type="text" value="{{ title }}">
+          {% endif %}
+          <img onclick="Sourch(this)" src="{% static 'images/search-icon.png' %}" alt="" class="search-icon">
+        </div>
+      </div>
+      <ul class="mobile-nav-list">
+          {% if cat_id == 0 %}
+            <a style="text-decoration:none" href="{% url 'index' %}?cat_id=0">
+                <li class="active">
+                  <div class="nav-name">
+                    <img src="{% static 'images/home-icon.png' %}" alt="">
+                    <p>全部</p>
+                  </div>
+                  <img src="{% static 'images/next-icon.png' %}" alt="" class="nav-next-icon">
+                </li>
+              </a>
+          {% else %}
+              <a style="text-decoration:none" href="{% url 'index' %}?cat_id=0">
+                 <li>
+                   <div class="nav-name">
+                     <img src="{% static 'images/home-icon.png' %}" alt="">
+                     <p>全部</p>
+                   </div>
+                   <img src="{% static 'images/next-icon.png' %}" alt="" class="nav-next-icon">
+                </li>
+              </a>
+          {% endif %}
+         {% for cat in cat_list %}
+            {% if cat_id == cat.id %}
+                <a style="text-decoration:none" href="{% url 'index' %}?cat_id={{ cat.id }}">
+                   <li class="active">
+                      <div class="nav-name">
+                        <img src="{% url 'index' %}media/{{ cat.icon }}" alt="">
+                        <p>{{ cat.name }}</p>
+                      </div>
+                      <img src="{% static 'images/next-icon.png' %}" alt="" class="nav-next-icon">
+                   </li>
+                </a>
+             {% else %}
+                <a style="text-decoration:none" href="{% url 'index' %}?cat_id={{ cat.id }}">
+                   <li>
+                      <div class="nav-name">
+                        <img src="{% url 'index' %}media/{{ cat.icon }}" alt="">
+                        <p>{{ cat.name }}</p>
+                      </div>
+                      <img src="{% static 'images/next-icon.png' %}" alt="" class="nav-next-icon">
+                   </li>
+               </a>
+             {% endif %}
+         {% endfor %}
+      </ul>
+    </div>
+    <script>
+      $('.nav-icon').click(function() {
+        $(".mobile-nav-list").slideToggle("slow");
+      })
+    </script>
+    <div class="jamnews-content-container">
+      <ul class="banner-list-box">
+         {% for banner in banner_list %}
+            <li>
+              <img src="{% url 'index' %}media/{{ banner.img }}" alt="">
+              <p> {{ banner.title }}</p>
+            </li>
+         {% endfor %}
+      </ul>
+      <script>
+        jQuery(".jamnews-content-container").slide({mainCell:".banner-list-box", autoPlay: true});
+      </script>
+      <div class="article-list">
+          <div class="record-list">
+              {% for acticle in article_lst %}
+                <div class="article-item">
+                  <img src="{% url 'index' %}media/{{ acticle.img }}" alt="" class="article-img">
+                  <a href="{% url 'artcle' %}?aid={{ acticle.id }}">{{ acticle.title }}</a>
+                  <div class="time-box">
+                    <img src="{% static 'images/time-icon.png' %}" alt="">
+                    <span>{{ acticle.created_at | hdatetime }}</span>
+                  </div>
+                </div>
+              {% endfor %}
+          </div>
+          <p class="load-more-box">
+            Load More News
+          </p>
+      </div>
+    </div>
+  </div>
+<script>
+     $(document).ready(function(){
+        let page = 1
+        var Dom = jQuery('.record-list');
+        $(window).scroll(function () {
+            var scrollTop = $(this).scrollTop();
+            var boxHeight = $(document.getElementById("information-box")).height();
+            if (scrollTop >= boxHeight) {
+                let html = '';
+                let l_url=window.location.origin;
+                let req_url = l_url + "?cat_id=" + {{ cat_id }} + "&page=" + page + "&page_size=20";
+                console.log(req_url)
+                $.ajax({
+                    url: req_url,
+                    data: {},
+                    type: "GET",
+                    dataType: "json",
+                    success: function (result) {
+                        artcle_list = result.result
+                        if (artcle_list.length >= 1){
+                            for(var i= 0; i < artcle_list.length; i++) {
+                                 html += `
+                                    <div class="article-item">
+                                        <img src="{% url 'index' %}media/${ artcle_list[i].img }" alt="" class="article-img">
+                                        <a href="{% url 'artcle' %}?aid=${ artcle_list[i].id }">${ artcle_list[i].title }</a>
+                                        <div class="time-box">
+                                            <img src="{% static 'images/time-icon.png' %}" alt="">
+                                            <span>${ artcle_list[i].created_at }</span>
+                                        </div>
+                                    </div>
+                                `
+                            }
+                            Dom.append(html);
+                        } else {
+                            jQuery('#More').text("没有了，已经见低了");
+                        }
+                    }
+                })
+                page = page + 1
+           }
+       });
+    })
+</script>
+{% endblock %}

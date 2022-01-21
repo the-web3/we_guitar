@@ -1,0 +1,45 @@
+{% load staticfiles we_guitar_tag %}
+<div class="page">
+    {% if items.has_previous %}
+        <a href="{{ items.prefix_uri }}page={{ items.previous_page_number }}" tabindex="-1" style="text-decoration:none; color: #fff">
+            <span class="first">
+                <img src="{% static 'images/page-icon.png' %}" alt="">
+            </span>
+        </a>
+    {% else %}
+        <a style="text-decoration:none; color: #fff">
+            <span class="first no-click">
+                <img src="{% static 'images/page-icon.png' %}" alt="">
+            </span>
+        </a>
+    {% endif %}
+    {% if items.page_range_data.show_first %}
+        <a style="text-decoration:none" href="{{ items.prefix_uri }}page=1"><span class="current" style="color:#F2F2F2">1</span></a>
+    {% endif %}
+    {{ items.page_range }}
+    {% for i in items.page_range_data.page_range %}
+        {% if i == items.number or i == page %}
+            <a style="text-decoration:none" style="text-decoration:none;color: #fff" href="{{ items.prefix_uri }}page={{ i }}">
+                <span class="current" style="color: #fff">{{ i }}</span>
+            </a>
+        {% else %}
+           <a style="text-decoration:none" style="text-decoration:none;color: #fff" href="{{ items.prefix_uri }}page={{ i }}">
+               <span class="no-click" style="color: #F2F2F2">{{ i }}</span>
+           </a>
+        {% endif %}
+    {% endfor %}
+    {% if items.page_range_data.show_last %}
+        <a style="text-decoration:none" href="{{ items.prefix_uri }}page={{ items.paginator.num_pages }}">
+            <span class="current" style="color: #F2F2F2">{{ items.paginator.num_pages }}</span>
+        </a>
+    {% endif %}
+    {% if items.has_next %}
+        <a style="text-decoration:none" href="{{ items.prefix_uri }}page={{ items.next_page_number }}">
+            <span class="last"><img src="{% static 'images/page-icon.png' %}" alt=""></span>
+        </a>
+    {% else %}
+        <a style="text-decoration:none">
+            <span class="last no-click"><img src="{% static 'images/page-icon.png' %}" alt=""></span>
+        </a>
+    {% endif %}
+</div>

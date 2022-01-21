@@ -1,0 +1,69 @@
+{% load staticfiles we_guitar_tag%}
+<html>
+<html data-static_url={{ config.STATIC_URL }}>
+  <head>
+    <title>we guitar</title>
+    <meta charSet="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Contro" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-title" content="we guitar">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="renderer" content="webkit" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favico.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <link rel="stylesheet" href="{% static 'css/content.css' %}">
+    <link rel="stylesheet" href="{% static 'css/foot.css' %}">
+    <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
+    <script src="{% static '/js/jquery.SuperSlide.2.1.1.js' %}"></script>
+    <meta name='robots' content='index,follow' />
+    <meta name="keywords" content="we guitar">
+    <meta name="description" content="we guitar">
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+  {% include 'web/layout/header.html' %}
+   <div class="wrapper">
+       <div class="search">
+            <div class="search-2">
+                <div class="search-input">
+                    <img src="{% static 'images/search-icon.png' %}" alt="">
+                    {% if title == None %}
+                        <input id="input_text" type="text"  placeholder="专为吉他手更新 更值得看的新闻">
+                    {% else %}
+                        <input id="input_text" autofocus="autofocus" type="text" value="{{ title }}">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="content">
+           {% block content %}
+           {% endblock %}
+        </div>
+   </div>
+  {% include 'web/layout/bottom.html' %}
+  </body>
+  <script>
+      $('#input_text').onClick('input', function () {
+		var title = $(this).val();
+		var cat_id = {{ cat_id }};
+		request_url = "?cat_id=" + cat_id + "&title=" + title;
+		window.location = request_url;
+	  })
+      var input_text = document.getElementById('input_text')
+      input_text.focus();
+      moveToEnd(input_text);
+      function moveToEnd(el) {
+        if (typeof el.selectionStart == "number") {
+            el.selectionStart = el.selectionEnd = el.value.length;
+        } else if (typeof el.createTextRange != "undefined") {
+            el.focus();
+            var range = el.createTextRange();
+            range.collapse(false);
+            range.select();
+        }
+      }
+  </script>
+</html>

@@ -1,0 +1,47 @@
+{% extends 'web/layout/main.html' %}
+{% load staticfiles we_guitar_tag%}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock %}
+{% block content %}
+{#<div class="logo">#}
+{#    <img src="{% static 'images/20210627161957.png' %}" alt>#}
+{#</div>#}
+<div class="nav">
+    <span>
+        <a href="{% url 'index' %}" style="text-decoration:none; color:#CBCBCB">首页</a> >
+        <a href="{% url 'index' %}?cat_id={{ article.category.id }}" style="text-decoration:none; color:#CBCBCB">设备</a> >
+        正文
+    </span>
+    <span>&lt; <a href="{% url 'index' %}" style="text-decoration:none; color: #CBCBCB">返回首页</a></span>
+</div>
+<div class="text">
+    <div class="left-text">
+        <span>
+            <img src="{% url 'index' %}media/{{ article.img }}" alt>
+        </span>
+    </div>
+    <div class="right-text">
+        <div class="nav2">
+            <span class="shebei">{{ article.category.name }}</span>
+            <div class="keyword">
+                {% for item in article.tags.all %}
+                    <p><span>#</span>{{ item.name }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="title">
+            <p>{{ article.title }}</p>
+        </div>
+        <div class="time-box">
+            <img src="{% static 'images/time-icon.png' %}" alt="">
+            <span>{{ article.created_at | hdatetime }}</span>
+        </div>
+        <div class="red-line">
+        </div>
+        <div class="section1">
+            {{ article.body | safe }}
+        </div>
+    </div>
+</div>
+{% endblock %}

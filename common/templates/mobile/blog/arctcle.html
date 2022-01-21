@@ -1,0 +1,64 @@
+{% extends 'mobile/layout/main.html' %}
+{% load staticfiles we_guitar_tag%}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/m_detail.css' %}">
+{% endblock %}
+{% block content %}
+<div class="jamnews-container">
+    <div class="jamnews-title-container">
+      <img class="logo" src="{% static 'images/logo.png' %}" alt="">
+      <span></span>
+      <img class="logo-icon" src="{% static 'images/logo-icon.png' %}" alt="">
+      <p>JamNews</p>
+    </div>
+    <div class="jamnews-nav-container">
+      <div class="search-container">
+        <div class="search-box">
+          <input type="text" placeholder="专为吉他手更新 更值得看的新闻">
+          <img src="{% static 'images/search-icon.png' %}" alt="" class="search-icon">
+        </div>
+      </div>
+    </div>
+    <div class="jamnews-content-container">
+      <ul class="banner-list-box">
+        {% for banner in banner_list %}
+            <li>
+              <img src="{% url 'index' %}media/{{ banner.img }}" alt="">
+              <p> {{ banner.title }}</p>
+            </li>
+         {% endfor %}
+      </ul>
+      <script>
+        jQuery(".jamnews-content-container").slide({mainCell:".banner-list-box", autoPlay: true});
+      </script>
+      <div class="article-content-container">
+        <div class="article-nav-box">
+          <p>
+              <a href="{% url 'index' %}" style="text-decoration:none; color:#CBCBCB">首页</a> >
+              <a href="{% url 'index' %}?cat_id={{ article.category.id }}" style="text-decoration:none; color:#CBCBCB">设备</a> >
+              <a>正文</a>
+          </p>
+          <a href="{% url 'index' %}" class="back-index"><img src="{% static 'images/prod-icon.png' %}" alt=""> 返回首页</a>
+        </div>
+        <div class="article-content-box">
+          <img src="{% static 'images/2.png' %}" alt="" class="article-banner">
+          <div class="keyword-box">
+            <a class="btn">{{ article.category.name }}</a>
+            {% for item in article.tags.all %}
+                <p><span>#</span>{{ item.name }}</p>
+            {% endfor %}
+          </div>
+          <h6 class="article-title">{{ article.title }}</h6>
+          <div class="time-box">
+            <img src="{% static 'images/time-icon.png' %}" alt="">
+            <span>{{ article.created_at | hdatetime }}</span>
+          </div>
+          <p class="red-line"></p>
+          <div class="content-text">
+            {{ article.body | safe }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

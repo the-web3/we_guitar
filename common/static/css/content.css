@@ -1,0 +1,236 @@
+.content {
+    margin: 10px auto;
+    width: 1155.71px;
+    clear: both;
+    overflow: hidden;
+}
+.left-content {
+    float: left;
+    width: 260px;
+    background: linear-gradient(0deg, #323234, #323234);
+    border-radius: 8px;
+    margin-top: 20px;
+}
+#logo {
+    width: 73px;
+    height: 73px;
+    margin: 58.65px 93.5px 0 93.5px;
+}
+#name {
+    width: 131px;
+    height: 19px;
+    margin: 12px 62.24px 0 66.76px;
+}
+.left-content .home {
+    width: 216px;
+    height: 44.58px;
+    background: #3A3A3C;
+    border-radius: 8px;
+    margin: 50.88px 22px 0 22px;
+}
+.left-content .all {
+    width: 216px;
+    margin: 50px 22px 0;
+    font-family: PingFang HK;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.24px;
+    color: #FFFFFF;
+}
+.left-content .all p {
+    display: inline-block;
+    margin-bottom: 20px;
+    width: 216px;
+    height: 44.58px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.4;
+    cursor: pointer;
+}
+.left-content .all p.current{
+    opacity: 1;
+    background: #3A3A3C;
+}
+.left-content .all p img {
+    width: 16px;
+    margin-right: 19.79px;
+}
+.left-content .all .last {
+    height: 17px;
+    margin-top: 5.21px;
+    font-family: PingFang HK;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 17px;
+    color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+.right-content {
+    float: right;
+    width: 850px;
+}
+.right-content .tupian {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    padding-left: 19px;
+    box-sizing: border-box;
+}
+.right-content .tupian .bd{
+    width: 100%;
+    border-radius: 8px;
+}
+.right-content .tupian .bd li{
+    width: 100%;
+    border-radius: 8px;
+    position: relative;
+}
+.right-content .tupian .bd li img{
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+}
+.right-content .tupian .bd li p{
+    width: 500px;
+    position: absolute;
+    left: 12px;
+    bottom: 0;
+    font-family: PingFang HK;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.24px;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.right-content .tupian .hd{
+    position: absolute;
+    bottom: 10px;
+    right: 53px;
+}
+.right-content .tupian .hd li{
+    width: 4px;
+    height: 4px;
+    background: #FFFFFF;
+    border-radius: 100%;
+    float: left;
+    margin: 0 3px;
+}
+.right-content .tupian .hd li.on{
+    width: 14.75px;
+    height: 4px;
+    background: #FFFFFF;
+    border-radius: 40px;
+}
+
+.right-content ul.article-list li {
+    margin-top: 40px;
+    padding-bottom: 39.5px;
+    width: 850px;
+    height: 155px;
+    border-bottom: 1px solid #ccc;
+    clear: both;
+    overflow: hidden;
+}
+.right-content ul.article-list li.first{
+    margin-top: 70px;
+}
+.right-content ul.article-list li .text {
+    float: right;
+    width: 566px;
+}
+.time-box{width: 100%;display: flex;align-items: center;margin-top: 42px;}
+.time-box img{width: 17px;}
+.time-box span{font-family: PingFang HK;font-style: normal;font-weight: normal;font-size: 12px;line-height: 17px;color: #828282;margin-left: 7px;}
+
+.right-content ul.article-list li > img {
+    float: left;
+    width: 250px;
+    border-radius: 12px;
+}
+.right-content ul.article-list li a {
+    width: 566.71px;
+    font-family: PingFang HK;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.24px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.right-content ul.article-list li p {
+    margin-top: 6px;
+    width: 570px;
+    font-family: PingFang HK;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.24px;
+    color: #979797;
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    display:-webkit-box; 
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2; 
+}
+.page {
+    float: right;
+    height: 44px;
+    margin-top: 50.25px;
+    margin-right: 0;
+    margin-bottom: 90.25px;
+    font-family: PingFang HK;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.24px;
+    color: #F2F2F2;
+    display: flex;
+    align-items: center;
+}
+.page span {
+    margin-left: 8px;
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    text-align:center;
+    line-height: 44px;
+    cursor: pointer;
+}
+.page span.first {
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page span.last {
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page span.no-click{
+    opacity: 0.4;
+}
+.page span.current {
+    background-color: #323232;
+}
+.page span img{
+    display: inline-block;
+    width: 16px;
+}
+.page span.first img{
+    transform: rotate(180deg);
+}
