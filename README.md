@@ -3,13 +3,13 @@
 ### PC 端效果
 .： 
     ![.： 
-](https://github.com/guoshijiang/we_guitar/common/static/images/1.png)
+](https://github.com/guoshijiang/we_guitar/tree/main/common/static/images/1.png)
 
 
 ### 手机端效果
 .： 
     ![.： 
-](https://github.com/guoshijiang/we_guitar/common/static/images/2.png)
+](https://github.com/guoshijiang/we_guitar/tree/main/common/static/images/2.png)
 
 
 #### 1.项目介绍
